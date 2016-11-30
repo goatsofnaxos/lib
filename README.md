@@ -1,4 +1,5 @@
 # lib
-Some useful modules
+
+Some convenient modules
+
 Runs on Windows 7, Python 2.7 (WinPython distribution)
-.
