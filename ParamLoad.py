@@ -22,7 +22,7 @@ class ParamLoad():
 
     def loadUserParams(self):
         if self.userParamFileExists():
-            with open(self.userParamsFileFullPath, 'r') as input:
+            with open(self.userParamsFileFullPath, 'rb') as input:
                 returnObject = pickle.load(input)
                 returnObject.loadedOldParams = 1
         else:

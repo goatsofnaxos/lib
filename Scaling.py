@@ -9,9 +9,10 @@ from __future__ import division
 
 class Scaling():
 
-    def __init__(self,actual,signal):
+    def __init__(self,actual,signal,unit):
         self.actual = actual
         self.signal = signal
+        self.unit   = unit
         self.computeScaling()
 
     def computeScaling(self):
