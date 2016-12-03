@@ -18,8 +18,8 @@ class Scaling():
         self.slope = (self.signal[1]-self.signal[0]) / (self.actual[1]-self.actual[0])
         self.offset =  self.signal[1] - (self.slope*self.actual[1])
 
-    def scale(self,input):
+    def sig2act(self,input):
         return (input - self.offset) / self.slope
 
-    def inversescale(self,input):
+    def act2sig(self,input):
         return (input * self.slope) + self.offset
