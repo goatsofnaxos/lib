@@ -1,5 +1,5 @@
 '''
-Created December 2, 2016
+Created December 13, 2016
 @author: Carl Schoonover
 Set up automated email alerts
 '''
