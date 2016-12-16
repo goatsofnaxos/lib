@@ -12,12 +12,12 @@ class EmailAlert():
         self.verbose = True
         self.key = key
         self.URL = URL
-        self.toAddress   = toAddress #"Goats Alert <goatsalert@mailgun.myneurosciencebet.com>"
-        self.fromAddress = fromAddress #"Goats Alert <goatsalert@mailgun.myneurosciencebet.com>"
+        self.toAddress   = toAddress
+        self.fromAddress = fromAddress
 
     def sendEmail(self, subject, text):
         self.postStatus = post(
-            self.URL, #"https://api.mailgun.net/v3/mailgun.myneurosciencebet.com/messages",
+            self.URL,
             auth=("api", self.key),
             data={"from": self.fromAddress,
                   "to": self.toAddress,
@@ -42,4 +42,4 @@ Main module
 
 if __name__ == '__main__':
     emailAlert = EmailAlert(key="",toAddress="",fromAddress="",URL="")
-    emailStatus = emailAlert.sendEmail(subject='TEST',text='THIS IS A TEST')
+    emailStatus = emailAlert.sendEmail(subject='TEST EMAIL',text='This is a test.')
