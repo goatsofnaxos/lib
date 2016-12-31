@@ -5,6 +5,8 @@ Set up automated email alerts
 '''
 
 from requests import post
+from time import sleep
+from FuncThread import FuncThread
 
 class EmailAlert():
 
@@ -27,14 +29,26 @@ class EmailAlert():
         )
         if self.postStatus.status_code == 200:
             if self.verbose:
-                print 'Email sent'
+                print 'Email sent.'
             return 1
         else:
             if self.verbose:
-                print 'Email failed to send'
+                print 'Email failed to send.'
                 print '  ', self.postStatus.status_code
                 print '  ', self.postStatus.content
             return 0
+
+    def emailMeIn(self,waitTime):
+        self.emailMeInThreadObj = FuncThread(self.emailMeInThread,waitTime)
+        self.emailMeInThreadObj.start()
+
+    def emailMeInThread(self,waitTime):
+        waitTimeSec = round(waitTime * 60)
+        sleep(waitTimeSec)
+        textStr = str(waitTime) + ' mn have elapsed.'
+        self.sendEmail('Email timer',textStr)
+        if self.verbose:
+            print 'Sent email after', waitTime, 'mn.'
 
 """
 Main module
