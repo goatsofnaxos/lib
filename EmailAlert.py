@@ -10,16 +10,16 @@ from FuncThread import FuncThread
 
 class EmailAlert():
 
-    def __init__(self,key,toAddress,fromAddress,URL):
+    def __init__(self,key,toAddress,fromAddress,url):
         self.verbose = True
         self.key = key
-        self.URL = URL
+        self.url = url
         self.toAddress   = toAddress
         self.fromAddress = fromAddress
 
     def sendEmail(self, subject, text):
         self.postStatus = post(
-            self.URL,
+            self.url,
             auth=("api", self.key),
             data={"from": self.fromAddress,
                   "to": self.toAddress,
