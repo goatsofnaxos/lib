@@ -56,4 +56,5 @@ Main module
 
 if __name__ == '__main__':
     emailAlert = EmailAlert(key="",toAddress="",fromAddress="",URL="")
-    emailStatus = emailAlert.sendEmail(subject='TEST EMAIL',text='This is a test.')
+    emailAlert.sendEmail(subject='TEST EMAIL',text='This is a test.')
+    emailAlert.emailMeIn(1.5)
