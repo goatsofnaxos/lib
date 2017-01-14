@@ -7,6 +7,7 @@ Set up automated email alerts
 from requests import post
 from time import sleep
 from FuncThread import FuncThread
+from numpy.random import normal
 
 class EmailAlert():
 
@@ -42,13 +43,27 @@ class EmailAlert():
         self.emailMeInThreadObj = FuncThread(self.emailMeInThread,waitTime)
         self.emailMeInThreadObj.start()
 
+    def harassMeEvery(self,mu_sigma_num,subjStr,bodyStr):
+        self.harassMeEveryThreadObj = FuncThread(self.harassMeEveryThread,mu_sigma_num,subjStr,bodyStr)
+        self.harassMeEveryThreadObj.start()
+
     def emailMeInThread(self,waitTime):
         waitTimeSec = round(waitTime * 60)
         sleep(waitTimeSec)
-        textStr = str(waitTime) + ' mn have elapsed.'
-        self.sendEmail('Email timer',textStr)
+        subjStr = 'Email timer'
+        bodyStr = str(waitTime) + ' mn have elapsed.'
+        self.sendEmail(subjStr,bodyStr)
         if self.verbose:
             print 'Sent email after', waitTime, 'mn.'
+
+    def harassMeEveryThread(self,mu_sigma_num,subjStr,bodyStr):
+        muPeriod = mu_sigma_num[0]    # hours
+        sigmaPeriod = mu_sigma_num[1] # hours
+        numEmails = mu_sigma_num[2]
+        for x in range(0,numEmails):
+            self.sendEmail(subjStr,bodyStr)
+            sleepTime = normal(muPeriod,sigmaPeriod,1) * 3600
+            sleep(sleepTime)
 
 """
 Main module
