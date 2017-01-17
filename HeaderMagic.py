@@ -31,10 +31,7 @@ class HeaderMagic():
                 print('ERROR:', self.filenames[-1], 'does not appear to be a Blackrock ns* file.')
                 exit(0)
             self.f = open(self.filenames[-1], 'rb')
-            fileformat = self.f.read(8).decode('UTF-8')
-            print(fileformat)
-            if fileformat != 'NEURALCD':
-
+            if self.f.read(8).decode('UTF-8') != 'NEURALCD':
                 print('ERROR:', self.filenames[-1], 'is not a NEURALCD file; need to implement script for other formats.')
                 self.f.close()
                 exit(0)
@@ -44,14 +41,12 @@ class HeaderMagic():
             dataHeaderBytes = 9
             headerBytes = int(basicHeader[2:6].view(uint32) + dataHeaderBytes)
             self.f.close()
-            print(headerBytes)
-'''
+
             # Copy file and chop off first N bytes
             cmd_list = ['time', 'dd', 'bs='+str(headerBytes), 'skip=1', 'if='+self.filenames[-1], 'of='+self.filenamesdat[-1]]
             a = Popen(cmd_list)
             a.communicate()
             print('Removed header from', self.filenames[-1], 'and copied to', self.filenamesdat[-1])
-
 
         # Concatenate files
         if self.filenames.__len__() > 1:
@@ -65,7 +60,6 @@ class HeaderMagic():
             p = Popen(' '.join(cmd_list), shell=True)
             p.wait()
             print('Concatenated', self.filenames.__len__(), 'files, saving to', concatfilename)
-'''
 
 """
 Main module
