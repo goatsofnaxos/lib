@@ -5,7 +5,7 @@ Set up automated email alerts
 '''
 
 from requests import post
-from time import sleep
+from time import sleep, strftime
 from FuncThread import FuncThread
 from numpy.random import normal
 
@@ -30,7 +30,8 @@ class EmailAlert():
         )
         if self.postStatus.status_code == 200:
             if self.verbose:
-                print 'Email sent.'
+                cnfrmStr = 'Email sent at ' + strftime("%H:%M:%S")
+                print cnfrmStr
             return 1
         else:
             if self.verbose:
@@ -51,7 +52,7 @@ class EmailAlert():
         waitTimeSec = round(waitTime * 60)
         sleep(waitTimeSec)
         subjStr = 'Email timer'
-        bodyStr = str(waitTime) + ' mn have elapsed.'
+        bodyStr = strftime("%H:%M:%S") + ' / ' + str(waitTime) + ' mn have elapsed.'
         self.sendEmail(subjStr,bodyStr)
         if self.verbose:
             print 'Sent email after', waitTime, 'mn.'
