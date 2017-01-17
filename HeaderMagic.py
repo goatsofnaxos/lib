@@ -68,8 +68,6 @@ Main module
 
 if __name__ == '__main__':
 
-    print('foobar')
-
     if argv.__len__() < 2:
         print('HeaderMagic removes the header of Blackrock ns* file.')
         print('It can optionally concatenate multiple Blackrock ns* file.')
