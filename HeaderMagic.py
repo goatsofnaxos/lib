@@ -31,9 +31,10 @@ class HeaderMagic():
                 print('ERROR:', self.filenames[-1], 'does not appear to be a Blackrock ns* file.')
                 exit(0)
             self.f = open(self.filenames[-1], 'rb')
-            fileformat = self.f.read(8)
+            fileformat = self.f.read(8).decode('UTF-8')
+            print(fileformat)
             if fileformat != 'NEURALCD':
-                print(fileformat)
+
                 print('ERROR:', self.filenames[-1], 'is not a NEURALCD file; need to implement script for other formats.')
                 self.f.close()
                 exit(0)
