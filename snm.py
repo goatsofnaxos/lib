@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 '''
 Created January 16, 2017
 @author: Carl Schoonover
@@ -20,11 +22,11 @@ class HeaderMagic():
         extentions = []
         for file in self.filenames:
             if not isfile(file):
-                print(('ERROR:', file, 'does not exist'))
+                print('ERROR: ' + file + ' does not exist')
                 exit(0)
             extentions.append(splitext(file)[1])
         if not all(x == extentions[0] for x in extentions):
-            print(('ERROR:', self.filenames, 'do not all have the same file extention.'))
+            print('ERROR: ' + self.filenames + ' do not all have the same file extention.')
         if (action == '-s' or action == '-n') and extentions[0][0:3] != '.ns':
             print('ERROR: stripping only possible on .ns* files.')
             exit(0)
@@ -49,7 +51,7 @@ class HeaderMagic():
         for file in self.filenames:
             f = open(file, 'rb')
             if f.read(8).decode('UTF-8') != 'NEURALCD':
-                print(('ERROR:', file, 'is not a NEURALCD file; need to implement script for other formats.'))
+                print('ERROR: ' + file + ' is not a NEURALCD file; need to implement script for other formats.')
                 f.close()
                 exit(0)
             # Loop up the header size
@@ -62,21 +64,20 @@ class HeaderMagic():
             cmd_list = ['time', 'dd', 'bs='+str(headerBytes), 'skip=1', 'if='+file, 'of='+filenamesdat]
             a = Popen(cmd_list)
             a.communicate()
-            print(('Removed header from', file, 'and copied to', filenamesdat))
+            print('Removed header from ' + file + ' and copied to ' + filenamesdat)
 
     def merge(self):
         mergefilename = ''
         cmd_list = ['cat']
         for file in self.filenames:
-            mergefilename = mergefilename + file.split('.')[0].split('/')[-1] + '-'
+            mergefilename = mergefilename + file.split('.')[0].split('/')[-1].split('_')[0] + '-'
             cmd_list.append(file)
-        mergefilename = dirname(filenames[0]) + '/' + mergefilename[:-1] + '.' + splitext(self.filenames[0])[0].split('.')[-1] + '.dat'
+        mergefilename = dirname(filenames[0]) + '/' + mergefilename[:-1] + '.dat'
         cmd_list.append('>')
         cmd_list.append(mergefilename)
         p = Popen(' '.join(cmd_list), shell=True)
         p.wait()
-        print(('Merged', self.filenames.__len__(), 'files, saving to', mergefilename))
-
+        print('Merged ' + str(self.filenames.__len__()) + ' files, saving to ' + mergefilename)
 
 """
 Main module
