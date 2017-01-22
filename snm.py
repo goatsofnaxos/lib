@@ -14,7 +14,7 @@ from sys import argv, exit
 from numpy import fromfile, uint8, uint32
 from subprocess import Popen
 
-class HeaderMagic():
+class SNM():
 
     def __init__(self,action,filenames):
         # Make sure there's no garbage coming in
@@ -96,7 +96,7 @@ if __name__ == '__main__':
     action = argv[1]
     filenames = argv[2:]
     if action == '-s' or action=='-m' or action=='-n':
-        hm = HeaderMagic(action, filenames)
+        snm = SNM(action, filenames)
     else:
         print(inputerrorstr)
         exit(0)
