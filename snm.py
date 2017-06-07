@@ -9,7 +9,7 @@ snm stands for strip and merge
 '''
 
 from os import getenv
-from os.path import isfile, splitext, basename, dirname, sep
+from os.path import isfile, splitext, basename, dirname, sep, join
 from sys import argv, exit
 from numpy import fromfile, uint8, uint32
 from subprocess import Popen
@@ -67,12 +67,13 @@ class SNM():
             print('Removed header from ' + file + ' and copied to ' + filenamesdat)
 
     def merge(self):
-        mergefilename = ''
+        #mergefilename = ''
         cmd_list = ['cat']
         for file in self.filenames:
-            mergefilename = mergefilename + file.split('.')[0].split('/')[-1].split('_')[0] + '-'
+            #mergefilename = mergefilename + file.split('.')[0].split('/')[-1].split('_')[0] + '-'
             cmd_list.append(file)
-        mergefilename = dirname(filenames[0]) + '/' + mergefilename[:-1] + '.dat'
+        #mergefilename = dirname(filenames[0]) + '/' + mergefilename[:-1] + '.dat'
+        mergefilename = join(dirname(filenames[0]), 'snm-merge.dat')
         cmd_list.append('>')
         cmd_list.append(mergefilename)
         p = Popen(' '.join(cmd_list), shell=True)
@@ -85,7 +86,7 @@ Main module
 
 if __name__ == '__main__':
 
-    inputerrorstr = 'Usage: python snm.py [-sm] file1 [file2, file 3, ...]\n' \
+    inputerrorstr = 'Usage: snm.py [-smn] file1 [file2, file 3, ...]\n' \
                     '  -s  strip the header of Blackrock ns* file\n' \
                     '  -m  merge (concatenate) .dat files in this order\n' \
                     '  -n  strip the header, then merge'
