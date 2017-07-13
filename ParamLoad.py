@@ -1,4 +1,7 @@
 '''
+
+© 2017 The Trustees of Columbia University in the City of New York. All Rights Reserved.
+
 Created September 29, 2015
 @author: Carl Schoonover
 Load and save user-defined parameters

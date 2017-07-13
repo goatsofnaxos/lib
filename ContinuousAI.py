@@ -1,4 +1,7 @@
 '''
+
+© 2017 The Trustees of Columbia University in the City of New York. All Rights Reserved.
+
 Created March 26, 2016
 Implements continuous (callback-based) analog input using the PyDAQmx wrapper
 Future versions can implement this as a thread with a signal emitted to main thread from EveryNCallback

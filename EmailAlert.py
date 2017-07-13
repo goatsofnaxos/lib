@@ -1,4 +1,7 @@
 '''
+
+© 2017 The Trustees of Columbia University in the City of New York. All Rights Reserved.
+
 Created December 13, 2016
 @author: Carl Schoonover
 Set up automated email alerts
