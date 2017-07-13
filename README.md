@@ -1,8 +1,8 @@
 # lib
 
-© 2017 The Trustees of Columbia University in the City of New York. All Rights Reserved.
-
 Some convenient Python modules
+
+© 2017 The Trustees of Columbia University in the City of New York. All Rights Reserved.
 
 Runs on Windows 7, Python 2.7 (WinPython distribution)
 
