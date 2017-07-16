@@ -1,6 +1,6 @@
 '''
 
-© 2017 The Trustees of Columbia University in the City of New York. All Rights Reserved.
+(c) 2017 The Trustees of Columbia University in the City of New York. All Rights Reserved.
 
 Created March 26, 2016
 Simple threading with arguments and ability to halt thread before it has completed execution

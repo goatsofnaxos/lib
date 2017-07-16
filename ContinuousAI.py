@@ -1,6 +1,6 @@
 '''
 
-© 2017 The Trustees of Columbia University in the City of New York. All Rights Reserved.
+(c) 2017 The Trustees of Columbia University in the City of New York. All Rights Reserved.
 
 Created March 26, 2016
 Implements continuous (callback-based) analog input using the PyDAQmx wrapper

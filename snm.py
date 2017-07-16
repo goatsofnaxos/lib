@@ -2,7 +2,7 @@
 
 '''
 
-© 2017 The Trustees of Columbia University in the City of New York. All Rights Reserved.
+(c) 2017 The Trustees of Columbia University in the City of New York. All Rights Reserved.
 
 Created January 16, 2017
 @author: Carl Schoonover
