@@ -84,7 +84,7 @@ class SNM():
         cmd_list.append(mergefilename)
         p = Popen(' '.join(cmd_list), shell=True)
         p.wait()
-        print('Merged ' + str(self.filenames.__len__()) + ' files, saving to ' + mergefilename)
+        print('   Merged ' + str(self.filenames.__len__()) + ' files, saving to ' + mergefilename)
 
 
 """
