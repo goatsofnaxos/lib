@@ -19,9 +19,8 @@ from subprocess import Popen
 
 class SNM():
 
-    def __init__(self,output,action,filenames):
+    def __init__(self,action,filenames):
         # Make sure there's no garbage coming in
-        self.output = output
         self.filenames = filenames
         extentions = []
         for file in self.filenames:
@@ -90,7 +89,7 @@ Main module
 
 if __name__ == '__main__':
 
-    inputerrorstr = 'Usage: snm.py outputfile [-smn] file1 [file2, file 3, ...]\n' \
+    inputerrorstr = 'Usage: snm.py [-smn] file1 [file2, file 3, ...]\n' \
                     '  -s  strip the header of Blackrock ns* file\n' \
                     '  -m  merge (concatenate) .dat files in this order\n' \
                     '  -n  strip the header, then merge'
@@ -98,11 +97,10 @@ if __name__ == '__main__':
     if argv.__len__() < 3:
         print(inputerrorstr)
         exit(0)
-    output = argv[1]
-    action = argv[2]
-    filenames = argv[3:]
+    action = argv[1]
+    filenames = argv[2:]
     if action == '-s' or action=='-m' or action=='-n':
-        snm = SNM(output, action, filenames)
+        snm = SNM(action, filenames)
     else:
         print(inputerrorstr)
         exit(0)
