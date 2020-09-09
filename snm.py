@@ -24,6 +24,7 @@ class SNM():
         self.output = output
         self.filenames = filenames
         extentions = []
+
         for file in self.filenames:
             if not isfile(file):
                 print('ERROR: ' + file + ' does not exist')
@@ -77,12 +78,14 @@ class SNM():
             #mergefilename = mergefilename + file.split('.')[0].split('/')[-1].split('_')[0] + '-'
             cmd_list.append(file)
         #mergefilename = dirname(filenames[0]) + '/' + mergefilename[:-1] + '.dat'
-        mergefilename = join(dirname(filenames[0]), 'snm-merge.dat')
+        #mergefilename = join(dirname(filenames[0]), 'snm-merge.dat')
+        mergefilename = self.output
         cmd_list.append('>')
         cmd_list.append(mergefilename)
         p = Popen(' '.join(cmd_list), shell=True)
         p.wait()
         print('Merged ' + str(self.filenames.__len__()) + ' files, saving to ' + mergefilename)
+
 
 """
 Main module
@@ -101,10 +104,6 @@ if __name__ == '__main__':
     output = argv[1]
     action = argv[2]
     filenames = argv[3:]
-
-    print(output)
-
-    exit()
 
     if action == '-s' or action=='-m' or action=='-n':
         snm = SNM(output, action, filenames)
