@@ -101,6 +101,11 @@ if __name__ == '__main__':
     output = argv[1]
     action = argv[2]
     filenames = argv[3:]
+
+    print(output)
+
+    exit()
+
     if action == '-s' or action=='-m' or action=='-n':
         snm = SNM(output, action, filenames)
     else:
